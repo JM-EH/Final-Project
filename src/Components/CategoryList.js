@@ -8,9 +8,20 @@ import { Link } from 'react-router-dom';
 class CategoryList extends Component {
   constructor() {
     super();
-    this.state = { categories: [], error: '' };
+    this.state = { categories: [], error: '',originalCategories: [] };
   }
+  handleInputSearch (e){
+    const textValue = e.target.value 
+    let categoriesCopy = this.state.categories
+    //console.log(categoriesCopy)
 
+    if (textValue.length >= 3){
+      categoriesCopy = this.state.originalCategories.filter(category => {
+        return (category.category.toLowerCase().includes(textValue.toLowerCase()))
+      }) 
+      this.setState({categories: categoriesCopy})
+    }
+  }
   fetch = async () => {
     const baseURL = 'https://dummyjson.com/products';
     try {
@@ -26,6 +37,8 @@ class CategoryList extends Component {
         });
         categories.sort((a, b) => a.category.localeCompare(b.category));
         this.setState({ categories: categories });
+        this.setState({originalCategories: categories}) 
+        
       });
     } catch (error) {
       this.setState({ error: error });
@@ -39,6 +52,7 @@ class CategoryList extends Component {
   render() {
     return (
       <div id="categoryList">
+        Search:  <input type = "text" placeholder='category' onChange = {this.handleInputSearch.bind(this)}></input>
         <ImageList cols={4}>
           {this.state.categories.map((item) => (
             <Link to={`/categories/${item.category}`} key={item.category}>
