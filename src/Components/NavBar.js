@@ -40,6 +40,16 @@ const NavBar = () => {
           {PathIncludes('products') ? <ChevronRightIcon /> : null}
           Products
         </IconButton>
+        |{' '}
+        <IconButton
+          variant="contained"
+          component={Link}
+          color={PathIncludes('cart') ? 'warning' : 'primary'}
+          to="/cart"
+        >
+          {PathIncludes('cart') ? <ChevronRightIcon /> : null}
+          Cart
+        </IconButton>
       </nav>
     </div>
   );

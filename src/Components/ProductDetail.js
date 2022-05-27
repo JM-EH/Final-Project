@@ -29,6 +29,29 @@ class ProductDetail extends Component {
     this.fetch();
   }
 
+  addToCart(){
+    //console.log("Agregar al carrito")
+
+    const products = []
+
+    products.push({
+      id:this.props.id,
+      quantity:1
+    })
+
+
+    fetch('https://dummyjson.com/carts/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      userId: 1,
+      products: products
+    })
+  })
+  .then(res => res.json())
+    alert("Prodcut Added to Cart")
+  }
+
   render() {
     if (this.state.product === null) {
       return <div id="productDetail">Loading...</div>;
@@ -67,7 +90,7 @@ class ProductDetail extends Component {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="large">Add to cart</Button>
+              <Button size="large" onClick={this.addToCart.bind(this)}>Add to cart</Button>
             </CardActions>
           </Card>
         </div>
