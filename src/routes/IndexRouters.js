@@ -9,6 +9,7 @@ import CategoryList from '../Components/CategoryList';
 import ProductById from './ProductById';
 import ProductsByCategory from './ProductsByCategory';
 import Cart from '../Components/Cart';
+import CheckOut from '../Components/CheckOut';
 
 import {
     Route,
@@ -16,7 +17,6 @@ import {
     useParams,
     BrowserRouter,
   } from "react-router-dom";
-
 
 class IndexRouter extends Component {
     constructor() {
@@ -34,6 +34,7 @@ class IndexRouter extends Component {
                 <Route path="categories" element={<CategoryList />} />
                 <Route path="categories/:categoryName" element={<ProductsByCategory />} />
                 <Route path="cart" element={<Cart/>}/>
+                <Route path="checkout" element={<CheckOut/>}/>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
             </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import { Link } from 'react-router-dom'; 
 import "../style.css"
 
 class Cart extends Component {
@@ -69,7 +69,7 @@ class Cart extends Component {
                 <tr>
                     <th>Name</th>
                     <th>Quantity</th>
-                    <th>Parice</th>
+                    <th>Price</th>
                     <th>Total</th>
                 </tr>
                 </thead>  
@@ -91,7 +91,7 @@ class Cart extends Component {
                 </tbody>
               </table>
 
-              <button >Check Out</button>
+              <button ><Link to={`/checkout`}>Check Out</Link></button>
           </div>
         )
     }
